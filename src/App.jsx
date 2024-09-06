@@ -1,8 +1,21 @@
 
+import React from 'react';
+import './weatherForecast.css'; 
+
+
+const WeatherForecast = ({ day, img, imgAlt, conditions, time }) => {
+  return (
+    <div className="weather">
+      <h2>{day}</h2>
+      <img src={img} alt={imgAlt} />
+      <p><span>conditions: </span>{conditions}</p>
+      <p><span>time: </span>{time}</p>
+    </div>
+  );
+};
 
 
 const weatherForecasts = [
-  
   {
     day: 'Mon',
     img: 'http://res.cloudinary.com/jkeohan/image/upload/v1535732381/day.svg',
@@ -38,18 +51,26 @@ const weatherForecasts = [
     conditions: 'cloudy',
     time: 'Night',
   },
-  
 ];
 
 function App() {
-  <section>
-  <div className="weather">
-  <h2>Day of the Week</h2>
-  <img src="" alt="" />
-  <p><span>conditions: </span>current weather conditions</p>
-  <p><span>time: </span>time of day</p>
-</div>
-</section>
+  return (
+    <>
+      <h1>Local Weather</h1>
+      <section>
+        {weatherForecasts.map((forecast, index) => (
+          <WeatherForecast
+            key={index}
+            day={forecast.day}
+            img={forecast.img}
+            imgAlt={forecast.imgAlt}
+            conditions={forecast.conditions}
+            time={forecast.time}
+          />
+        ))}
+      </section>
+    </>
+  );
 }
 
-export default App
+export default App;
